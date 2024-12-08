@@ -10,7 +10,7 @@ import { MoreVertical, ChevronRight, ChevronUp, Check } from "lucide-react";
 import * as Slider from "@radix-ui/react-slider";
 
 const ShopPage: React.FC = () => {
-  const [showFilters, setShowFilters] = useState(false); // Add state to toggle visibility of filters
+  const [showFilters, setShowFilters] = useState(false); 
 
   return (
     <main className="pb-20">
@@ -21,7 +21,7 @@ const ShopPage: React.FC = () => {
           {/* Mobile Filter Toggle Button */}
           <button
             className="lg:hidden mb-4 flex items-center justify-center text-black bg-transparent border rounded-lg p-2"
-            onClick={() => setShowFilters((prev) => !prev)} // Toggle filters visibility
+            onClick={() => setShowFilters((prev) => !prev)} 
           >
             <FiSliders className="h-5 w-5" />
             <span className="ml-2">Filters</span>

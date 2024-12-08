@@ -2,26 +2,24 @@ import { Minus, Plus, Trash2, Tag, ArrowRight } from "lucide-react";
 import React from "react";
 export default function ShoppingCart() {
   return (
-    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 page-animation">
       <h1 className="text-2xl font-bold mb-8">YOUR CART</h1>
 
       <div className="flex flex-col lg:flex-row gap-8">
         <div className="flex-1">
           {/* Product 1 */}
           <div className="flex flex-col sm:flex-row items-start gap-4 p-4 border rounded-lg mb-4">
-          <img
-                src="/images/pic13.png"
-                alt="Gradient Graphic T-shirt"
-                className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 bg-[#F0EEED] rounded-xl flex-none"
-              />
-
+            <img
+              src="/images/pic13.png"
+              alt="Gradient Graphic T-shirt"
+              className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 bg-[#F0EEED] rounded-xl flex-none"
+            />
             <div className="flex-1 space-y-1">
               <h3 className="font-medium">Gradient Graphic T-shirt</h3>
               <p className="text-gray-600">Size: Large</p>
               <p className="text-gray-600">Color: White</p>
               <p className="font-medium">$145</p>
             </div>
-
             <div className="flex items-center gap-4">
               <div className="flex items-center bg-gray-100 rounded">
                 <button className="p-2" aria-label="Decrease quantity">
@@ -37,7 +35,6 @@ export default function ShoppingCart() {
                   <Plus size={16} />
                 </button>
               </div>
-
               <button aria-label="Remove item">
                 <Trash2 className="text-red-500" size={20} />
               </button>
@@ -46,19 +43,17 @@ export default function ShoppingCart() {
 
           {/* Product 2 */}
           <div className="flex flex-col sm:flex-row items-start gap-4 p-4 border rounded-lg mb-4">
-          <img
-                src="/images/pic3.png"
-                alt="Gradient Graphic T-shirt"
-                className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 bg-[#F0EEED] rounded-xl flex-none"
-              />
-
+            <img
+              src="/images/pic3.png"
+              alt="Checkered Shirt"
+              className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 bg-[#F0EEED] rounded-xl flex-none"
+            />
             <div className="flex-1 space-y-1">
               <h3 className="font-medium">Checkered Shirt</h3>
               <p className="text-gray-600">Size: Medium</p>
               <p className="text-gray-600">Color: Red</p>
               <p className="font-medium">$180</p>
             </div>
-
             <div className="flex items-center gap-4">
               <div className="flex items-center bg-gray-100 rounded">
                 <button className="p-2" aria-label="Decrease quantity">
@@ -74,7 +69,6 @@ export default function ShoppingCart() {
                   <Plus size={16} />
                 </button>
               </div>
-
               <button aria-label="Remove item">
                 <Trash2 className="text-red-500" size={20} />
               </button>
@@ -83,19 +77,17 @@ export default function ShoppingCart() {
 
           {/* Product 3 */}
           <div className="flex flex-col sm:flex-row items-start gap-4 p-4 border rounded-lg">
-          <img
-                src="/images/pic2.png"
-                alt="Gradient Graphic T-shirt"
-                className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 bg-[#F0EEED] rounded-xl flex-none"
-              />
-
+            <img
+              src="/images/pic2.png"
+              alt="Skinny Fit Jeans"
+              className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 lg:w-36 lg:h-36 bg-[#F0EEED] rounded-xl flex-none"
+            />
             <div className="flex-1 space-y-1">
               <h3 className="font-medium">Skinny Fit Jeans</h3>
               <p className="text-gray-600">Size: Large</p>
               <p className="text-gray-600">Color: Blue</p>
               <p className="font-medium">$240</p>
             </div>
-
             <div className="flex items-center gap-4">
               <div className="flex items-center bg-gray-100 rounded">
                 <button className="p-2" aria-label="Decrease quantity">
@@ -111,7 +103,6 @@ export default function ShoppingCart() {
                   <Plus size={16} />
                 </button>
               </div>
-
               <button aria-label="Remove item">
                 <Trash2 className="text-red-500" size={20} />
               </button>

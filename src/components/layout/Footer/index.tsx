@@ -13,22 +13,22 @@ const socialsData: SocialNetworks[] = [
   {
     id: 1,
     icon: <FaTwitter />,
-    url: "https://twitter.com",
+    url: "https://twitter.com/in1223zu",
   },
   {
     id: 2,
     icon: <FaFacebookF />,
-    url: "https://facebook.com",
+    url: "https://www.facebook.com/in1223zu",
   },
   {
     id: 3,
     icon: <FaInstagram />,
-    url: "https://instagram.com",
+    url: "https://www.instagram.com/in1223zu/",
   },
   {
     id: 4,
     icon: <FaGithub />,
-    url: "https://github.com/Nimrahjawaid03",
+    url: "https://github.com/ZaeemUddinWork",
   },
 ];
 
@@ -103,8 +103,7 @@ const Footer = () => {
           <hr className="h-[1px] border-t-black/10 mb-6" />
           <div className="flex flex-col sm:flex-row justify-center sm:justify-between items-center mb-2">
             <p className="text-sm text-center sm:text-left text-black/60 mb-4 sm:mb-0 sm:mr-1">
-            Shop.co © 2000-2023,All Rights Reserved
-              
+            Shop.co © 2000-2023, All Rights Reserved
             </p>
             <div className="flex items-center">
               {paymentBadgesData.map((badge, _, arr) => (

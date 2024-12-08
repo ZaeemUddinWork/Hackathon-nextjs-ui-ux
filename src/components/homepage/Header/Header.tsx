@@ -1,11 +1,37 @@
+'use client';
+
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
 import { integralCF } from "@/styles/fonts";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 
 const Header = () => {
+  const [brandsCount, setBrandsCount] = useState(0);
+  const [productsCount, setProductsCount] = useState(0);
+  const [customersCount, setCustomersCount] = useState(0);
+
+  useEffect(() => {
+    const animateCount = (finalValue: number, setter: React.Dispatch<React.SetStateAction<number>>, duration = 4000) => {
+      const increment = Math.ceil(finalValue / (duration / 10));
+      let current = 0;
+      const interval = setInterval(() => {
+        current += increment;
+        if (current >= finalValue) {
+          setter(finalValue);
+          clearInterval(interval);
+        } else {
+          setter(current);
+        }
+      }, 10);
+    };
+
+    animateCount(200, setBrandsCount);
+    animateCount(2000, setProductsCount);
+    animateCount(30000, setCustomersCount);
+  }, []);
+
   return (
     <header className="bg-[#F2F0F1] pt-10 md:pt-24 overflow-hidden">
       <div className="md:max-w-frame mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2">
@@ -24,7 +50,7 @@ const Header = () => {
           <div className="flex md:h-full md:max-h-11 lg:max-h-[52px] xl:max-h-[68px] items-center justify-center md:justify-start flex-wrap sm:flex-nowrap md:space-x-3 lg:space-x-6 xl:space-x-8 md:mb-[116px]">
             <div className="flex flex-col">
               <span className="font-bold text-2xl md:text-xl lg:text-3xl xl:text-[40px] xl:mb-2">
-                200+
+                {brandsCount}+
               </span>
               <span className="text-xs xl:text-base text-black/60 text-nowrap">
                 International Brands
@@ -33,7 +59,7 @@ const Header = () => {
             <Separator className="ml-6 md:ml-0 h-12 md:h-full bg-black/10" orientation="vertical" />
             <div className="flex flex-col ml-6 md:ml-0">
               <span className="font-bold text-2xl md:text-xl lg:text-3xl xl:text-[40px] xl:mb-2">
-                2000+
+                {productsCount}+
               </span>
               <span className="text-xs xl:text-base text-black/60 text-nowrap">
                 High-Quality Products
@@ -42,7 +68,7 @@ const Header = () => {
             <Separator className="hidden sm:block sm:h-12 md:h-full ml-6 md:ml-0 bg-black/10" orientation="vertical" />
             <div className="flex flex-col w-full text-center sm:w-auto sm:text-left mt-3 sm:mt-0 sm:ml-6 md:ml-0">
               <span className="font-bold text-2xl md:text-xl lg:text-3xl xl:text-[40px] xl:mb-2">
-                30,000+
+                {customersCount}+
               </span>
               <span className="text-xs xl:text-base text-black/60 text-nowrap">
                 Happy Customers
@@ -51,15 +77,16 @@ const Header = () => {
           </div>
         </section>
         <section className="relative md:px-4 min-h-[448px] md:min-h-[428px] bg-cover bg-top xl:bg-[center_top_-1.6rem] bg-no-repeat bg-[url('/images/header-res-homepage.png')] md:bg-[url('/images/header-homepage.png')]">
-         
-         <Link href={'/cart'}><Image
-            priority
-            src="/icons/big-star.svg"
-            height={104}
-            width={104}
-            alt="big star"
-            className="absolute right-7 xl:right-0 top-12 max-w-[76px] max-h-[76px] lg:max-w-24 lg:max-h-max-w-24 xl:max-w-[104px] xl:max-h-[104px]"
-          /></Link> 
+          <Link href={'/cart'}>
+            <Image
+              priority
+              src="/icons/big-star.svg"
+              height={104}
+              width={104}
+              alt="big star"
+              className="absolute right-7 xl:right-0 top-12 max-w-[76px] max-h-[76px] lg:max-w-24 lg:max-h-max-w-24 xl:max-w-[104px] xl:max-h-[104px]"
+            />
+          </Link>
           <Image
             priority
             src="/icons/small-star.svg"

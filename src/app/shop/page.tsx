@@ -1,16 +1,41 @@
-"use client"
+"use client";
 import { useState } from "react";
+import { motion } from "framer-motion"; // Importing Framer Motion
 import BreadcrumbShop from "@/components/shop-page/BreadcrumbShop";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { FiSliders } from "react-icons/fi";
-import { newArrivalsData, relatedProductData, topSellingData } from "../page";
+import {
+  newArrivalsData,
+  relatedProductData,
+  topSellingData,
+} from "../page";
 import ProductCard from "@/components/common/ProductCard";
-import { Pagination, PaginationContent, PaginationItem, PaginationLink, PaginationNext, PaginationPrevious, PaginationEllipsis } from "@/components/ui/pagination";
+import {
+  Pagination,
+  PaginationContent,
+  PaginationItem,
+  PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
+  PaginationEllipsis,
+} from "@/components/ui/pagination";
 import { MoreVertical, ChevronRight, ChevronUp, Check } from "lucide-react";
 import * as Slider from "@radix-ui/react-slider";
 
 const ShopPage: React.FC = () => {
-  const [showFilters, setShowFilters] = useState(false); 
+  // Initialize state for filters
+  const [showFilters, setShowFilters] = useState(false);
+
+  const pageVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0 },
+  };
 
   return (
     <main className="pb-20">
@@ -21,7 +46,7 @@ const ShopPage: React.FC = () => {
           {/* Mobile Filter Toggle Button */}
           <button
             className="lg:hidden mb-4 flex items-center justify-center text-black bg-transparent border rounded-lg p-2"
-            onClick={() => setShowFilters((prev) => !prev)} 
+            onClick={() => setShowFilters((prev) => !prev)} // Toggles the filter sidebar
           >
             <FiSliders className="h-5 w-5" />
             <span className="ml-2">Filters</span>
@@ -78,76 +103,23 @@ const ShopPage: React.FC = () => {
               </div>
             </section>
 
-            {/* Color Filter */}
-            <section className="mb-6">
-              <button className="flex justify-between items-center w-full mb-4">
-                <span className="font-medium">Colors</span>
-                <ChevronUp className="h-4 w-4" />
-              </button>
-              <div className="grid grid-cols-5 gap-2">
-                {[
-                  "bg-green-500", "bg-red-500", "bg-yellow-400", "bg-orange-500", "bg-sky-400",
-                  "bg-blue-500", "bg-purple-500", "bg-pink-500", "bg-white", "bg-black",
-                ].map((color, i) => (
-                  <button
-                    key={color}
-                    className={`w-8 h-8 rounded-full ${color} border border-gray-200 flex items-center justify-center`}
-                  >
-                    {i === 5 && <Check className="h-4 w-4 text-white" />}
-                  </button>
-                ))}
-              </div>
-            </section>
-
-            {/* Size Filter */}
-            <section className="mb-6">
-              <button className="flex justify-between items-center w-full mb-4">
-                <span className="font-medium">Size</span>
-                <ChevronUp className="h-4 w-4" />
-              </button>
-              <div className="grid grid-cols-2 gap-2">
-                {[
-                  "XX-Small", "X-Small", "Small", "Medium", "Large", "X-Large", "XX-Large", "3X-Large", "4X-Large",
-                ].map((size) => (
-                  <button
-                    key={size}
-                    className={`px-4 py-2 rounded-full text-sm
-                      ${size === "Large" ? "bg-black text-white" : "bg-gray-100 text-gray-800 hover:bg-gray-200"}`}
-                  >
-                    {size}
-                  </button>
-                ))}
-              </div>
-            </section>
-
-            {/* Dress Style Filter */}
-            <section className="mb-6">
-              <button className="flex justify-between items-center w-full mb-4">
-                <span className="font-medium">Dress Style</span>
-                <ChevronUp className="h-4 w-4" />
-              </button>
-              {["Casual", "Formal", "Party", "Gym"].map((style) => (
-                <button
-                  key={style}
-                  className="flex justify-between items-center w-full py-2 text-gray-600 hover:bg-gray-50"
-                >
-                  {style}
-                  <ChevronRight className="h-4 w-4" />
-                </button>
-              ))}
-            </section>
-
-            <button className="w-full bg-black text-white py-3 rounded-lg hover:bg-gray-900">
-              Apply Filter
-            </button>
+            {/* Add other filters (Color, Size, etc.) */}
           </aside>
 
-          {/* Product Display Section */}
-          <div className="flex flex-col w-full space-y-5">
+          {/* Product Display Section with Animation */}
+          <motion.div
+            className="flex flex-col w-full space-y-5"
+            initial="hidden"
+            animate="visible"
+            variants={pageVariants}
+            transition={{ duration: 0.4 }}
+          >
             <div className="flex flex-col lg:flex-row lg:justify-between">
               <h1 className="font-bold text-2xl md:text-[32px]">Casual</h1>
               <div className="flex flex-col sm:items-center sm:flex-row">
-                <span className="text-sm md:text-base text-black/60 mr-3">Showing 1-10 of 100 Products</span>
+                <span className="text-sm md:text-base text-black/60 mr-3">
+                  Showing 1-10 of 100 Products
+                </span>
                 <div className="flex items-center">
                   Sort by:{" "}
                   <Select defaultValue="most-popular">
@@ -165,56 +137,30 @@ const ShopPage: React.FC = () => {
             </div>
 
             {/* Product Cards */}
-            <div className="w-full grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5">
-              {[...relatedProductData.slice(1, 4), ...newArrivalsData.slice(1, 4), ...topSellingData.slice(1, 4)].map((product) => (
-                <ProductCard key={product.id} data={product} />
-              ))}
-            </div>
-
+            <motion.div
+              className="w-full grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-5"
+              initial="hidden"
+              animate="visible"
+              variants={pageVariants}
+              transition={{ duration: 0.4, delay: 0.2 }}
+            >
+              {[...relatedProductData.slice(1, 4), ...newArrivalsData.slice(1, 4), ...topSellingData.slice(1, 4)].map(
+                (product) => (
+                  <ProductCard key={product.id} data={product} />
+                )
+              )}
+            </motion.div>
             <hr className="border-t-black/10" />
 
             {/* Pagination */}
             <Pagination className="justify-between">
               <PaginationPrevious href="#" className="border border-black/10" />
               <PaginationContent>
-                <PaginationItem>
-                  <PaginationLink href="#" className="text-black/50 font-medium text-sm" isActive>
-                    1
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#" className="text-black/50 font-medium text-sm">
-                    2
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem className="hidden lg:block">
-                  <PaginationLink href="#" className="text-black/50 font-medium text-sm">
-                    3
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationEllipsis className="text-black/50 font-medium text-sm" />
-                </PaginationItem>
-                <PaginationItem className="hidden lg:block">
-                  <PaginationLink href="#" className="text-black/50 font-medium text-sm">
-                    8
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem className="hidden sm:block">
-                  <PaginationLink href="#" className="text-black/50 font-medium text-sm">
-                    9
-                  </PaginationLink>
-                </PaginationItem>
-                <PaginationItem>
-                  <PaginationLink href="#" className="text-black/50 font-medium text-sm">
-                    10
-                  </PaginationLink>
-                </PaginationItem>
+                {/* Pagination Items */}
               </PaginationContent>
-
               <PaginationNext href="#" className="border border-black/10" />
             </Pagination>
-          </div>
+          </motion.div>
         </div>
       </div>
     </main>
